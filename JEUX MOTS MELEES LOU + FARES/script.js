@@ -161,7 +161,9 @@ function renderWordList() {
 function setupInteraction() {
     const handleStart = (e) => {
         isSelecting = true;
-        const target = getTargetCell(e);
+        // Use closest for initial touch/click to ensure we get the cell even if child elements are clicked
+        const target = e.target.closest('.grid-cell') || getTargetCell(e);
+
         if (target) {
             selectionStart = { x: parseInt(target.dataset.x), y: parseInt(target.dataset.y) };
             updateSelectionVisual(target);
@@ -181,6 +183,7 @@ function setupInteraction() {
         if (!isSelecting) return;
         isSelecting = false;
         clearSelectionLine();
+        document.querySelectorAll('.selecting').forEach(el => el.classList.remove('selecting'));
 
         if (selectionStart && selectionEnd) {
             checkSelection(selectionStart, selectionEnd);
@@ -196,22 +199,33 @@ function setupInteraction() {
 
     // Touch Events
     gridContainer.addEventListener('touchstart', (e) => {
-        // e.preventDefault(); // Prevent scrolling while playing
-        handleStart(e.touches[0]);
+        // Find if the touch started on a grid cell
+        const touch = e.touches[0];
+        const target = document.elementFromPoint(touch.clientX, touch.clientY);
+        if (target && target.closest('.grid-cell')) {
+            e.preventDefault(); // Prevent scrolling while playing ONLY if touching grid
+            // Manually trigger handleStart with a mock event object that has the target
+            handleStart({ target: target, clientX: touch.clientX, clientY: touch.clientY });
+        }
     }, { passive: false });
 
     window.addEventListener('touchmove', (e) => {
-        // e.preventDefault();
-        handleMove(e.touches[0]);
+        if (isSelecting) {
+            e.preventDefault();
+            handleMove(e.touches[0]);
+        }
     }, { passive: false });
 
     window.addEventListener('touchend', handleEnd);
 }
 
 function getTargetCell(e) {
-    const element = document.elementFromPoint(e.clientX, e.clientY);
-    if (element && element.classList.contains('grid-cell')) {
-        return element;
+    // Use elementsFromPoint to "pierce" through the SVG overlay or other elements
+    const elements = document.elementsFromPoint(e.clientX, e.clientY);
+    for (const element of elements) {
+        if (element.classList.contains('grid-cell')) {
+            return element;
+        }
     }
     return null;
 }
@@ -249,6 +263,10 @@ function clearSelectionLine() {
 
 function updateSelectionVisual(target) {
     // Optional: highlight starting cell
+    // Clear previous generic highlights if any (though usually managed by line)
+    // We can add a temporary class 'selecting'
+    document.querySelectorAll('.selecting').forEach(el => el.classList.remove('selecting'));
+    target.classList.add('selecting');
 }
 
 function checkSelection(start, end) {

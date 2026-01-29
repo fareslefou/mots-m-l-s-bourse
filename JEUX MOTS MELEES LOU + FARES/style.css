@@ -156,6 +156,12 @@ h1 {
     transform: scale(1.05);
 }
 
+.grid-cell.selecting {
+    background-color: #bee3f8;
+    /* Light Blue */
+    transform: scale(1.1);
+}
+
 /* Found words on grid */
 .grid-cell.found {
     background-color: #C6F6D5 !important;
@@ -173,6 +179,7 @@ h1 {
     /* Thicker line for bigger cells */
     stroke-linecap: round;
     opacity: 0.4;
+    pointer-events: none;
 }
 
 /* Modal Active State */
