@@ -1,0 +1,308 @@
+/* Global Styles */
+body {
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    background-color: #fdfbf7;
+    /* Warm paper-like background */
+    font-family: 'Outfit', sans-serif;
+}
+
+/* Header */
+header {
+    background: white;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.05);
+    border-bottom: 3px solid #f0f0f0;
+}
+
+h1 {
+    font-family: 'Cinzel', serif;
+    letter-spacing: 0.05em;
+    font-size: 9rem;
+    /* Maximum impact */
+    font-weight: 900;
+    text-transform: uppercase;
+    color: #FF6B6B;
+    /* Vibrant Coral */
+    text-shadow: 8px 8px 0px #FFD23F;
+    /* Yellow shadow */
+    line-height: 1;
+    margin-bottom: 1rem;
+    text-align: center;
+    width: 100%;
+}
+
+/* Word Cards */
+.word-card {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    background-color: white;
+    border-radius: 1.5rem;
+    /* Softer corners */
+    padding: 1.5rem;
+    /* Mode padding */
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.05);
+    border: 3px solid #eee;
+    /* Thicker border */
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    cursor: default;
+    position: relative;
+    overflow: hidden;
+}
+
+.word-card:hover {
+    transform: translateY(-8px);
+    box-shadow: 0 15px 30px rgba(0, 0, 0, 0.15);
+    border-color: #FFD23F;
+    /* Playful Yellow */
+}
+
+.word-card img {
+    width: 120px;
+    /* Bigger images */
+    height: 120px;
+    object-fit: cover;
+    border-radius: 1rem;
+    margin-bottom: 1rem;
+    transition: transform 0.4s ease;
+    background: #f8f8f8;
+}
+
+.word-card:hover img {
+    transform: scale(1.1) rotate(5deg);
+    /* Playful tilt */
+}
+
+.word-card span {
+    font-weight: 800;
+    color: #2D3748;
+    font-size: 1.4rem;
+    /* Much larger text */
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    text-align: center;
+    white-space: nowrap;
+    /* Prevent wrapping */
+}
+
+/* Found State */
+.word-card.found {
+    background-color: #F0FFF4;
+    border-color: #48BB78;
+    opacity: 0.8;
+}
+
+.word-card.found::after {
+    content: '✓';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    font-size: 5rem;
+    color: #48BB78;
+    font-weight: 900;
+    opacity: 0.4;
+    pointer-events: none;
+}
+
+.word-card.found span {
+    color: #2F855A;
+}
+
+.word-card.found img {
+    filter: grayscale(100%);
+    opacity: 0.6;
+}
+
+/* Grid Area */
+#game-board {
+    background: white;
+    border: 6px solid #E2E8F0;
+    /* Thicker border */
+    box-shadow: 0 15px 35px rgba(0, 0, 0, 0.1);
+    padding: 2rem !important;
+}
+
+.grid-cell {
+    aspect-ratio: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: 800;
+    /* Extra bold */
+    font-size: 3.5rem;
+    /* Even HUGE-ER letters */
+    color: #2D3748;
+    /* Darker for contrast */
+    cursor: pointer;
+    border-radius: 1rem;
+    transition: all 0.2s;
+    user-select: none;
+    font-family: 'Outfit', sans-serif;
+    /* Friendly font */
+    background: #F7FAFC;
+    margin: 4px !important;
+    /* Little bit more breathing room */
+    overflow: hidden;
+    /* Ensure content stays inside */
+    min-width: 60px;
+    /* Force minimum physical size */
+    min-height: 60px;
+}
+
+.grid-cell:hover {
+    background-color: #EDF2F7;
+    transform: scale(1.05);
+}
+
+/* Found words on grid */
+.grid-cell.found {
+    background-color: #C6F6D5 !important;
+    /* Green 200 */
+    color: #22543D !important;
+    /* Green 800 */
+    animation: pop 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+/* Selection Line */
+.selection-line {
+    stroke: #63B3ED;
+    /* Blue 400 */
+    stroke-width: 45px;
+    /* Thicker line for bigger cells */
+    stroke-linecap: round;
+    opacity: 0.4;
+}
+
+/* Modal Active State */
+.modal-active {
+    opacity: 1 !important;
+    pointer-events: auto !important;
+}
+
+.modal-active #explanation-card {
+    transform: scale(1) !important;
+}
+
+@keyframes pop {
+    0% {
+        transform: scale(1);
+    }
+
+    50% {
+        transform: scale(1.2);
+    }
+
+    100% {
+        transform: scale(1);
+    }
+}
+
+/* Responsive adjustments */
+
+/* Tablet (Small Laptops / Tablets) */
+@media (max-width: 1024px) {
+    h1 {
+        font-size: 5rem;
+        /* Smaller but still big */
+        text-shadow: 4px 4px 0px #FFD23F;
+    }
+
+    .grid-cell {
+        font-size: 2.2rem;
+        min-width: 45px;
+        min-height: 45px;
+        margin: 2px !important;
+    }
+
+    .word-card span {
+        font-size: 1rem;
+    }
+
+    .word-card img {
+        width: 80px;
+        height: 80px;
+    }
+
+    #game-board {
+        padding: 1rem !important;
+        border-width: 4px;
+    }
+}
+
+/* Mobile (Phones) */
+@media (max-width: 640px) {
+    h1 {
+        font-size: 3rem;
+        /* Fits on phone */
+        text-shadow: 2px 2px 0px #FFD23F;
+        margin-bottom: 0.5rem;
+    }
+
+    header {
+        padding: 1rem;
+    }
+
+    .text-xl {
+        font-size: 0.9rem;
+        /* Smaller subtitle */
+        border-bottom-width: 2px;
+    }
+
+    .grid-cell {
+        font-size: 1.2rem;
+        /* Readable but small */
+        min-width: 28px;
+        min-height: 28px;
+        margin: 1px !important;
+        border-radius: 0.25rem;
+    }
+
+    .selection-line {
+        stroke-width: 20px;
+        /* Thinner line */
+    }
+
+    #game-board {
+        padding: 0.5rem !important;
+        border-width: 2px;
+        box-shadow: none;
+        /* Simplify for mobile performance/space */
+    }
+
+    /* Word List on Mobile */
+    #words-list {
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        /* 2 columns */
+        gap: 0.5rem;
+        padding: 0.5rem;
+    }
+
+    .word-card {
+        padding: 0.5rem;
+        border-radius: 0.75rem;
+        border-width: 1px;
+    }
+
+    .word-card img {
+        width: 50px;
+        height: 50px;
+        margin-bottom: 0.25rem;
+    }
+
+    .word-card span {
+        font-size: 0.7rem;
+    }
+
+    /* Instruction text */
+    .font-hand {
+        font-size: 1.2rem;
+        margin-bottom: 0.5rem;
+    }
+
+    .font-hand span {
+        font-size: 1.5rem;
+    }
+}
