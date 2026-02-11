@@ -1,13 +1,13 @@
 const WORDS = [
-    { word: "COUPOLES", image: "image jpg/coupoles.jpg", description: "Ce sont de grands toits arrondis, comme des bols retournés, qui couvrent le bâtiment." },
-    { word: "CIRCULAIRES", image: "image jpg/circulaires.jpg", description: "Cela veut dire que c'est tout rond, comme un cercle !" },
-    { word: "ROTONDE", image: "image jpg/rotonde.jpg", description: "Une grande salle ronde. C'est le cœur de la Bourse de Commerce." },
-    { word: "VERRE", image: "image jpg/verre.jpg", description: "La grande coupole est faite de verre pour laisser passer la lumière du soleil." },
-    { word: "METAL", image: "image jpg/metal.jpg", description: "C'est la structure solide qui tient tout le verre de la coupole." },
-    { word: "LUMIERE", image: "image jpg/lumiere.jpg", description: "Elle entre par la coupole et change tout au long de la journée." },
-    { word: "BOURSE", image: "image jpg/bourse.jpg", description: "Avant, on y échangeait du blé et de la farine. Aujourd'hui, on y voit de l'art !" },
-    { word: "OISEAU", image: "image jpg/oiseau.jpg", description: "Parfois, des oiseaux entrent sous la coupole ou sont représentés dans les décorations." },
-    { word: "EVOLUTION", image: "image jpg/evolution.jpg", description: "Le bâtiment a beaucoup changé à travers l'histoire pour devenir ce qu'il est." }
+    { word: "COUPOLES", image: "images/coupoles.jpg", description: "Ce sont de grands toits arrondis, comme des bols retournés, qui couvrent le bâtiment." },
+    { word: "CIRCULAIRES", image: "images/circulaires.jpg", description: "Cela veut dire que c'est tout rond, comme un cercle !" },
+    { word: "ROTONDE", image: "images/rotonde.jpg", description: "Une grande salle ronde. C'est le cœur de la Bourse de Commerce." },
+    { word: "VERRE", image: "images/verre.jpg", description: "La grande coupole est faite de verre pour laisser passer la lumière du soleil." },
+    { word: "METAL", image: "images/metal.jpg", description: "C'est la structure solide qui tient tout le verre de la coupole." },
+    { word: "LUMIERE", image: "images/lumiere.jpg", description: "Elle entre par la coupole et change tout au long de la journée." },
+    { word: "BOURSE", image: "images/bourse.jpg", description: "Avant, on y échangeait du blé et de la farine. Aujourd'hui, on y voit de l'art !" },
+    { word: "OISEAU", image: "images/oiseau.jpg", description: "Parfois, des oiseaux entrent sous la coupole ou sont représentés dans les décorations." },
+    { word: "EVOLUTION", image: "images/evolution.jpg", description: "Le bâtiment a beaucoup changé à travers l'histoire pour devenir ce qu'il est." }
 ];
 
 const GRID_SIZE = 12; // 12x12 grid
